@@ -1,0 +1,25 @@
+<Project>
+  <!--
+    Central NuGet versions for projects physically under src/Mods/.
+    Pin RimRef to the installed RimWorld 1.7 experimental build.
+    Update Harmony deliberately when the Workshop runtime changes.
+  -->
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- RimWorld 1.7 experimental game API reference assemblies. -->
+    <PackageVersion Include="Krafs.Rimworld.Ref"
+                    Version="1.7.5014-unstable" />
+
+    <!-- Local Debug assembly discovery; this is a build-time helper. -->
+    <PackageVersion Include="Krafs.Rimworld.Ref.Local"
+                    Version="1.0.0" />
+
+    <!-- Harmony 3 compile-time API reference assemblies. -->
+    <PackageVersion Include="Lib.Harmony.Ref"
+                    Version="3.0.0-rc.7" />
+  </ItemGroup>
+</Project>

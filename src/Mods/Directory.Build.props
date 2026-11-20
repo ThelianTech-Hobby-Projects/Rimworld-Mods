@@ -1,0 +1,47 @@
+<Project>
+  <!--
+    ThelianTech RimWorld Mods - shared development defaults.
+    Automatically applied to .csproj files physically under src/Mods/.
+    Solution membership does not affect these settings.
+
+    Dependency versions are defined in Directory.Packages.props.
+    In Debug, RimRef Local may substitute matching installed RimWorld assemblies
+    so the IDE can navigate to real game method implementations.
+    Publishing, release staging, packaging, and per-mod versioning are
+    deliberately NOT configured here.
+  -->
+
+  <PropertyGroup>
+    <!-- Fallback for minimal class libraries. Projects can override it. -->
+    <TargetFramework Condition="'$(TargetFramework)' == '' and '$(TargetFrameworks)' == ''">net10.0</TargetFramework>
+
+    <!-- RimWorld mod class libraries are not NuGet packages. -->
+    <IsPackable>false</IsPackable>
+
+    <!-- Do not copy dependency DLLs into normal class-library build output. -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+
+    <!-- Local game assemblies only for Debug, never a mandatory dependency. -->
+    <UseLocalRimWorldAssemblies Condition="'$(Configuration)' == 'Debug'">true</UseLocalRimWorldAssemblies>
+    <UseLocalRimWorldAssemblies Condition="'$(Configuration)' != 'Debug'">false</UseLocalRimWorldAssemblies>
+    <!-- Avoid silently compiling against a different unstable game build. -->
+    <UseStrictRimWorldVersionComparison>true</UseStrictRimWorldVersionComparison>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- RimWorld 1.7 compile-time API signatures; runtime comes from the game. -->
+    <PackageReference Include="Krafs.Rimworld.Ref"
+                      PrivateAssets="all"
+                      ExcludeAssets="runtime" />
+
+    <!-- Optional Debug enhancement: local game assemblies when versions match.
+         Package imports its own build targets; do not exclude build assets. -->
+    <PackageReference Include="Krafs.Rimworld.Ref.Local"
+                      PrivateAssets="all" />
+
+    <!-- Harmony 3 compile-time signatures; runtime comes from the Harmony mod. -->
+    <PackageReference Include="Lib.Harmony.Ref"
+                      PrivateAssets="all"
+                      ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

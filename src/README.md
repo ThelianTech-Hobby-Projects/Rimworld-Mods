@@ -1,0 +1,1 @@
+Placeholder File for Directory folder, will eventually contain documentation for providing a directory structure for the repository, mods, and personal modding utility projects for automating the building process of my mods, eventually will include CLI project tools for running C# scripts for building all my mods when there are updates to build etc.

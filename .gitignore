@@ -5,6 +5,8 @@
 
 # Repo specific files/folders
 /refs
+*.zip
+*.7z
 
 # User-specific files
 *.rsuser
